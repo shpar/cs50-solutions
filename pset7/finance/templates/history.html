@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Stock</th>
+                <th>Transaction</th>
+                <th>Price of share</th>
+                <th>Time of transaction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row["symbol"] }}</td>
+                <td>{{ row["name"] }}</td>
+                {% if row["number"] > 0 %}
+                <td>BOUGHT {{ row["number"] }}</td>
+                {% endif %}
+                {% if row["number"] < 0 %}
+                <td>SOLD {{ -row["number"] }}</td>
+                {% endif %}
+                <td>{{ row["price"] }}</td>
+                <td>{{ row["time"] }}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
